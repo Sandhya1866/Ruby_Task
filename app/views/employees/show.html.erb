@@ -1,0 +1,14 @@
+<h1><%= @employee.full_name %></h1>
+
+<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 4px; margin-bottom: 1rem;">
+  <p><strong>First Name:</strong> <%= @employee.first_name %></p>
+  <p><strong>Last Name:</strong> <%= @employee.last_name %></p>
+  <p><strong>Email:</strong> <%= @employee.email %></p>
+  <p><strong>Salary:</strong> $<%= number_with_delimiter(@employee.salary, delimiter: ',') %></p>
+  <p><strong>Department:</strong> <%= link_to @employee.department.name, @employee.department %></p>
+</div>
+
+<div>
+  <%= link_to "Edit", edit_employee_path(@employee), style: "display: inline-block; background: #007bff; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px; margin-right: 0.5rem;" %>
+  <%= link_to "Back", employees_path, style: "display: inline-block; background: #6c757d; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px;" %>
+</div>

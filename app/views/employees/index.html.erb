@@ -1,0 +1,30 @@
+<h1>Employees</h1>
+
+<%= link_to "New Employee", new_employee_path, style: "display: inline-block; background: #007bff; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px; margin-bottom: 1rem;" %>
+
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr style="background: #f8f9fa;">
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Name</th>
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Email</th>
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Department</th>
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Salary</th>
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 0.75rem;"><%= employee.full_name %></td>
+        <td style="padding: 0.75rem;"><%= employee.email %></td>
+        <td style="padding: 0.75rem;"><%= employee.department.name %></td>
+        <td style="padding: 0.75rem;">$<%= number_with_delimiter(employee.salary, delimiter: ',') %></td>
+        <td style="padding: 0.75rem;">
+          <%= link_to "Show", employee, style: "color: #007bff; margin-right: 0.5rem;" %>
+          <%= link_to "Edit", edit_employee_path(employee), style: "color: #007bff; margin-right: 0.5rem;" %>
+          <%= button_to "Delete", employee, method: :delete, data: { confirm: "Are you sure?" }, style: "display: inline; background: none; border: none; color: #dc3545; cursor: pointer; padding: 0;" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,36 @@
+<h1><%= @department.name %></h1>
+
+<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 4px; margin-bottom: 1rem;">
+  <p><strong>Name:</strong> <%= @department.name %></p>
+  <p><strong>Budget:</strong> $<%= number_with_delimiter(@department.budget, delimiter: ',') %></p>
+</div>
+
+<h2>Employees in this Department</h2>
+
+<% if @employees.any? %>
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+    <thead>
+      <tr style="background: #f8f9fa;">
+        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Name</th>
+        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Email</th>
+        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @employees.each do |employee| %>
+        <tr style="border-bottom: 1px solid #dee2e6;">
+          <td style="padding: 0.75rem;"><%= link_to employee.full_name, employee %></td>
+          <td style="padding: 0.75rem;"><%= employee.email %></td>
+          <td style="padding: 0.75rem;">$<%= number_with_delimiter(employee.salary, delimiter: ',') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No employees in this department.</p>
+<% end %>
+
+<div>
+  <%= link_to "Edit", edit_department_path(@department), style: "display: inline-block; background: #007bff; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px; margin-right: 0.5rem;" %>
+  <%= link_to "Back", departments_path, style: "display: inline-block; background: #6c757d; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px;" %>
+</div>

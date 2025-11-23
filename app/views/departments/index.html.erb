@@ -1,0 +1,28 @@
+<h1>Departments</h1>
+
+<%= link_to "New Department", new_department_path, style: "display: inline-block; background: #007bff; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px; margin-bottom: 1rem;" %>
+
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr style="background: #f8f9fa;">
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Name</th>
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Budget</th>
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Employees</th>
+      <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #dee2e6;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr style="border-bottom: 1px solid #dee2e6;">
+        <td style="padding: 0.75rem;"><%= department.name %></td>
+        <td style="padding: 0.75rem;">$<%= number_with_delimiter(department.budget, delimiter: ',') %></td>
+        <td style="padding: 0.75rem;"><%= department.employees.count %></td>
+        <td style="padding: 0.75rem;">
+          <%= link_to "Show", department, style: "color: #007bff; margin-right: 0.5rem;" %>
+          <%= link_to "Edit", edit_department_path(department), style: "color: #007bff; margin-right: 0.5rem;" %>
+          <%= button_to "Delete", department, method: :delete, data: { confirm: "Are you sure? This will delete all employees in this department!" }, style: "display: inline; background: none; border: none; color: #dc3545; cursor: pointer; padding: 0;" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
